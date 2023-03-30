@@ -1,0 +1,23 @@
+name: Send email on commit
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send_email:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.arjunsajeev45@gmail.com }}
+          password: ${{ secrets.arjunsajeev }}
+          subject: New commit on main branch
+          body: A new commit has been pushed to the main branch.
+          to: sanil.davis@speehive.com
+          from: ${{ secrets.arjunsajeev45@gmail.com }}
